@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.TextView
 import com.innup.lybilibili.R
 import com.innup.lybilibili.utils.MathUtil
+import kotlinx.coroutines.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -15,6 +16,10 @@ class MainActivity : AppCompatActivity() {
 
         // Example of a call to a native method
 //        findViewById<TextView>(R.id.sample_text).text = MathUtil.Add(2 , 3).toString()
+        GlobalScope.launch (Dispatchers.Main){
+            val userName = MathUtil.getUserName()
+            findViewById<TextView>(R.id.sample_text).text = userName
+        }
         findViewById<TextView>(R.id.sample_text).setOnClickListener {
             val intent = Intent(this, BiliBiliMainActivity::class.java)
             startActivity(intent)
